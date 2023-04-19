@@ -1,0 +1,6 @@
+#!/bin/sh
+apt-get update
+apt-get -y install fish
+wget -O - https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-musl.tar.gz | tar -xz -C /usr/local/bin
+echo "fish" >> .bashrc
+echo "exit" >> .bashrc
