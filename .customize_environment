@@ -1,5 +1,17 @@
 #!/bin/sh
 apt-get update
 apt-get -y install fish
+
 wget -O - https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-musl.tar.gz | tar -xz -C /usr/local/bin
-echo -e "fish\nexit" >> .bashrc
+
+bashrc_file="$HOME/.bashrc"
+
+# Check if the .bashrc file exists
+if [ -f "$bashrc_file" ]; then
+  # Check if the lines "fish" and "exit" are present at the end of the file
+  if ! tail -n 2 "$bashrc_file" | grep -qE 'fish|exit'; then
+    # Add the lines "fish" and "exit" to the end of the file
+    echo "fish" >> "$bashrc_file"
+    echo "exit" >> "$bashrc_file"
+  fi
+fi
